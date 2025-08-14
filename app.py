@@ -18,14 +18,14 @@ def index():
 ################ 1. OCR API ################
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
+modelOCR = ocr_predictor(pretrained=True)
+
 def extract_text_from_image(file_path) :
     output =""
-    model = ocr_predictor(pretrained=True)
-
     doc =DocumentFile.from_images(file_path)
     print("Inference starting 🟢...")
     startingTime = time.time()
-    result = model(doc)
+    result = modelOCR(doc)
     endingTime =time.time()
     print(f"Inference End ,Duration :{endingTime-startingTime}👌...")
     for block in result.pages[0].blocks :
@@ -113,12 +113,12 @@ def detect_object():
 from sentence_transformers import SentenceTransformer, util
 import time 
 
+model =SentenceTransformer('all-MiniLM-L6-v2')
 @app.route("/match",methods=['POST'])
 def match():
 
     data=request.get_json()
     text1 ,text2 =  data["ocr_text"],data["detected_obj"]
-    model =SentenceTransformer('all-MiniLM-L6-v2')
     emb1 = model.encode(text1, convert_to_tensor=True)
     emb2 = model.encode(text2, convert_to_tensor=True)
 
