@@ -1,11 +1,9 @@
-easyocr
 python-doctr[torch]
-
-flask
 fuzzywuzzy[speedup]
 sentence-transformers
-
-
-flask-cors
 ultralytics
+
+flask
+flask-cors
 gunicorn==21.2.0
+
