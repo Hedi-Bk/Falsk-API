@@ -66,11 +66,10 @@ def get_ocr():
 
 ################ 2. Objet detetcion API ################
 from ultralytics import YOLO
-
+model = YOLO('yolov8n.pt')
 
 @app.route("/detect_object",methods=['POST'])
 def detect_object():
-    model = YOLO('yolov8n.pt')
     if "obj_image" not in request.files :
         return jsonify({'error': 'Aucun fichier envoyé nommé image'}), 400
     image = request.files['obj_image']
