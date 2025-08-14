@@ -1,0 +1,11 @@
+easyocr
+python-doctr[torch]
+
+flask
+fuzzywuzzy[speedup]
+sentence-transformers
+
+
+flask-cors
+ultralytics
+gunicorn==21.2.0
